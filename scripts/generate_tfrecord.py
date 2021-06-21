@@ -112,6 +112,7 @@ def create_tf_example(group, path):
     with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
         try:
             encoded_jpg = fid.read()
+            ENCODED_JPG.append(encoded_jpg)
         except:
             encoded_jpg = ENCODED_JPG[5]
     encoded_jpg_io = io.BytesIO(encoded_jpg)
