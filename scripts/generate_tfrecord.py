@@ -113,7 +113,7 @@ def create_tf_example(group, path):
         try:
             encoded_jpg = fid.read()
         except:
-            encoded_jpg = ENCODED_JPG[-1]
+            encoded_jpg = ENCODED_JPG[5]
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
     width, height = image.size
