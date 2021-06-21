@@ -108,14 +108,8 @@ def split(df, group):
 
 
 def create_tf_example(group, path):
-    ENCODED_JPG = [1]
     with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
-        encoded_jpg = ENCODED_JPG[-1]
-        try:
-            encoded_jpg = fid.read()
-            ENCODED_JPG.append(encoded_jpg)
-        except:
-            pass
+        encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
     width, height = image.size
