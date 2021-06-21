@@ -85,7 +85,7 @@ def xml_to_csv(path):
                      int(root.find('size')[0].text),
                      int(root.find('size')[1].text),
                      member[0].text,
-                     int(member[4][0].text), # change [5] to [4]
+                     int(member[4][0].text), # change [4] to [5]
                      int(member[4][1].text),
                      int(member[4][2].text),
                      int(member[4][3].text)
@@ -109,7 +109,10 @@ def split(df, group):
 
 def create_tf_example(group, path):
     with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
-        encoded_jpg = fid.read()
+        try:
+            encoded_jpg = fid.read()
+        except:
+            pass
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
     width, height = image.size
